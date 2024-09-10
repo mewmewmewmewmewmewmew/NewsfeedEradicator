@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638615036455714142
-    m_Hash: 1088387495
+      ticks: 638615935268833555
+    m_Hash: 3677505550
   m_LockFileStatus:
     m_FilePath: C:/Users/mrpon/OneDrive/Documents/Jame-Gam/NewsFeedEradicatorGit/NewsfeedEradicator/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638615036705773690
-    m_Hash: 3639974331
+      ticks: 638615935268833555
+    m_Hash: 33157529
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
