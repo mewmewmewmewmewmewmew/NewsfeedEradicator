@@ -1,6 +1,5 @@
 using TreeEditor;
 using UnityEngine;
-[RequireComponent(typeof(BoxCollider2D))]
 public class iconDown : MonoBehaviour
 {
     private bool isDragging = false;
@@ -45,7 +44,7 @@ public class iconDown : MonoBehaviour
             this.isDragging = false;
             this.offsetDone = false;
             this.randomScreen.Switchto(1);
-            transform.localScale = new Vector3(this.oldScale, this.oldScale, 1);
+            transform.localScale = new Vector3(this.oldScale, this.oldScale, 0.1f);
             transform.position = this.startPosition;
         } 
 
@@ -54,14 +53,16 @@ public class iconDown : MonoBehaviour
             Debug.Log("Trop tot");
             this.transform.position = this.startPosition;
             this.randomScreen.MoveScreen(new Vector3(0, 0, 0));
-            transform.localScale =  new Vector3(this.oldScale, this.oldScale, 1); 
+            transform.localScale =  new Vector3(this.oldScale, this.oldScale, 0.1f); 
             this.isDragging = false;
             this.offsetDone = false;
         }
     }
     private Vector3 GetFixedPos()
     {
-        MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        MousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+        //MousePos = Input.mousePosition;
+        Debug.Log(MousePos);
 
         if (!offsetDone)
         {
@@ -97,14 +98,14 @@ public class iconDown : MonoBehaviour
         if (MousePos.y > this.startPosition.y && !(MousePos.y > this.startPosition.y + this.iconsValues.SlidingDistance))
         {
             float newScale = ((this.MousePos.y - this.startPosition.y) * this.newGrowRange / this.oldGrowRange) + this.oldScale;
-            return new Vector3(newScale, newScale, 1);
+            return new Vector3(newScale, newScale, 0.1f);
         }
 
         else if (MousePos.y < this.startPosition.y)
-            return new Vector3(this.oldScale, this.oldScale, 1);
+            return new Vector3(this.oldScale, this.oldScale, 0.1f);
 
         else
-            return new Vector3(this.oldScale + this.iconsValues.growingMax, this.oldScale + this.iconsValues.growingMax, 1);
+            return new Vector3(this.oldScale + this.iconsValues.growingMax, this.oldScale + this.iconsValues.growingMax, 0.1f);
     }
 
 }

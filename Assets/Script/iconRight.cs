@@ -1,6 +1,5 @@
 using TreeEditor;
 using UnityEngine;
-[RequireComponent(typeof(BoxCollider2D))]
 public class iconRight : MonoBehaviour
 {
     private bool isDragging = false;
@@ -46,7 +45,7 @@ public class iconRight : MonoBehaviour
             this.isDragging = false;
             this.offsetDone = false;
             this.randomScreen.Switchto(2);
-            transform.localScale = new Vector3(this.oldScale, this.oldScale, 1);
+            transform.localScale = new Vector3(this.oldScale, this.oldScale, 0.1f);
             transform.position = this.startPosition;
         }
 
@@ -55,7 +54,7 @@ public class iconRight : MonoBehaviour
             Debug.Log("Trop tot mskn");
             this.transform.position = this.startPosition;
             this.randomScreen.MoveScreen(new Vector3(0, 0, 0));
-            transform.localScale = new Vector3(this.oldScale, this.oldScale, 1); 
+            transform.localScale = new Vector3(this.oldScale, this.oldScale, 0.1f); 
             this.isDragging = false;
             this.offsetDone = false;
         }
@@ -64,7 +63,9 @@ public class iconRight : MonoBehaviour
 
     private Vector3 GetFixedPos()
     {
-        MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        MousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+        //MousePos = Input.mousePosition;
+        Debug.Log(MousePos);
 
         if (!offsetDone)
         {
@@ -99,14 +100,14 @@ public class iconRight : MonoBehaviour
         if (MousePos.x < this.startPosition.x && !(MousePos.x < this.startPosition.x - this.iconsValues.SlidingDistance))
         {
             float newScale = ((this.MousePos.x - this.startPosition.x) * this.newGrowRange / this.oldGrowRange) + this.oldScale;
-            return new Vector3(newScale, newScale, 1);
+            return new Vector3(newScale, newScale, 0.1f);
         }
 
         else if (MousePos.x > this.startPosition.x)
-            return new Vector3(this.oldScale, this.oldScale, 1);
+            return new Vector3(this.oldScale, this.oldScale, 0.1f);
 
         else
-            return new Vector3(this.oldScale + this.iconsValues.growingMax, this.oldScale + this.iconsValues.growingMax, 1);
+            return new Vector3(this.oldScale + this.iconsValues.growingMax, this.oldScale + this.iconsValues.growingMax, 0.1f);
 
 
 
