@@ -9,10 +9,12 @@ using UnityEngine.UIElements;
 
 public class randomScreen : MonoBehaviour
 {
+    public GameObject[] icons;
     public GameObject[] prefabList;
     public int length;
     public GameObject currentScreen;
     private GameObject[] sideScreens;
+
 
     private int numberOne;
     private int numberTwo;
@@ -46,18 +48,25 @@ public class randomScreen : MonoBehaviour
                 DestroyImmediate(temp, true);
                 DestroyImmediate(this.sideScreens[1], true);
                 DestroyImmediate(this.sideScreens[2], true);
+                this.icons[2].SetActive(false);
+                this.icons[0].SetActive(true);
                 break;
             case 1:
                 this.currentScreen = this.sideScreens[1];
                 DestroyImmediate(temp, true);
                 DestroyImmediate(this.sideScreens[0], true);
                 DestroyImmediate(this.sideScreens[2], true);
+                this.icons[2].SetActive(true);
+                this.icons[1].SetActive(true);
+                this.icons[0].SetActive(true);
                 break;
             case 2:
                 this.currentScreen = this.sideScreens[2];
                 DestroyImmediate(temp, true);
                 DestroyImmediate(this.sideScreens[1], true);
                 DestroyImmediate(this.sideScreens[0], true);
+                this.icons[2].SetActive(true);
+                this.icons[0].SetActive(false);
                 break;
         }
 

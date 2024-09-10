@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b8ede01f6ddda40b7feb50604d2802, type: 3}
   m_Name: Icon
   m_EditorClassIdentifier: 
-  SlidingDistance: 3
+  SlidingDistance: 2.7
   growingMax: 3
-  growingMin: 0.5
+  growingMin: 1
